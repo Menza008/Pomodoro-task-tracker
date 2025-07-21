@@ -1,0 +1,242 @@
+/* Basic Reset & Fonts */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  background: #f0f4f8;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Header */
+header h1 {
+  font-size: 2rem;
+  color: #4caf50;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* Timer Section */
+.timer-section {
+  background: white;
+  padding: 25px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.timer-section h2#timer-label {
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #4caf50;
+}
+
+#timer {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.timer-buttons button {
+  background: #4caf50;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 10px 18px;
+  margin: 0 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  min-width: 75px;
+}
+
+.timer-buttons button:hover {
+  background: #388e3c;
+}
+
+/* Task Section */
+.task-section {
+  width: 100%;
+  max-width: 460px;
+  background: white;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.task-section h2 {
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #4caf50;
+}
+
+#task-form {
+  display: flex;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+#task-input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px 0 0 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  min-width: 0;
+}
+
+#task-input:focus {
+  border-color: #4caf50;
+}
+
+#task-form button {
+  background: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0 6px 6px 0;
+  transition: background-color 0.3s ease;
+}
+
+#task-form button:hover {
+  background: #388e3c;
+}
+
+#task-list {
+  list-style: none;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+#task-list li {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-wrap: wrap;
+}
+
+#task-list li.done {
+  text-decoration: line-through;
+  color: #777;
+  background: #c8e6c9;
+}
+
+#task-list li:hover {
+  background: #d0f0d6;
+}
+
+#task-list button {
+  background: none;
+  border: none;
+  color: #c62828;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 6px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+#task-list button:hover {
+  color: #8e0000;
+}
+
+/* Display deadline under each task item */
+.task-deadline {
+  display: block;
+  font-size: 0.85rem;
+  color: #4caf50;
+  margin-top: 4px;
+  margin-left: 1.5em;
+  font-style: italic;
+  width: 100%;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background: #121212;
+  color: #f5f5f5;
+}
+
+body.dark-mode .timer-section,
+body.dark-mode .task-section {
+  background: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode #timer {
+  color: #fff;
+}
+
+body.dark-mode #task-input {
+  background: #2c2c2c;
+  color: #fff;
+  border-color: #555;
+}
+
+body.dark-mode #task-list li {
+  background: #2e7d32;
+  color: #ffffff;
+}
+
+body.dark-mode #task-list li.done {
+  background: #558b2f;
+  color: #ccc;
+}
+
+body.dark-mode .task-deadline {
+  color: #b2ff59;
+}
+
+/* Responsive Layout */
+@media (max-width: 480px) {
+  .timer-section,
+  .task-section {
+    width: 100%;
+    padding: 20px;
+  }
+
+  #task-form {
+    flex-direction: column;
+  }
+
+  #task-input, #task-form button {
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 10px;
+  }
+
+  #task-form button {
+    border-radius: 6px;
+  }
+}
