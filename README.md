@@ -1,8 +1,8 @@
-# 🍅 Pomodoro Task Tracker
+# 🍅 My Pomo Tracker
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
-[![GitHub stars](https://img.shields.io/github/stars/Menza008/pomodoro-task-tracker?style=social)](https://github.com/YOUR_USERNAME/pomodoro-task-tracker/stargazers)  
-[![GitHub issues](https://img.shields.io/github/issues/Menza008pomodoro-task-tracker)](https://github.com/YOUR_USERNAME/pomodoro-task-tracker/issues)  
+[![GitHub stars](https://img.shields.io/github/stars/Menza008/pomodoro-task-tracker?style=social)](https://github.com/Menza008/pomodoro-task-tracker/stargazers)  
+[![GitHub issues](https://img.shields.io/github/issues/Menza008pomodoro-task-tracker)](https://github.com/Menza008/pomodoro-task-tracker/issues)  
 
 A sleek, offline-capable **Pomodoro Timer** combined with a **Task Tracker** to help you stay productive and organized — anytime, anywhere!
 
@@ -22,7 +22,7 @@ A sleek, offline-capable **Pomodoro Timer** combined with a **Task Tracker** to 
 
 1. **Add tasks** by typing in the input box and clicking *Add Task*  
 2. Use **Start**, **Pause**, and **Reset** buttons to control your Pomodoro timer  
-3. Click on a task to mark it as done or the ✕ button to remove it  
+3. Click on a task checkbox to mark it as done or the ✕ button to remove it  
 4. Use the **Toggle Dark Mode** button to switch themes  
 5. **Install** the app on your device for easy offline access  
 
@@ -39,7 +39,7 @@ A sleek, offline-capable **Pomodoro Timer** combined with a **Task Tracker** to 
 ## 📥 Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/pomodoro-task-tracker.git
+git clone https://github.com/Menza008/pomodoro-task-tracker.git
 cd pomodoro-task-tracker
 # Open index.html in your browser or use a live server
 
