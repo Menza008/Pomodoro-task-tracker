@@ -10,6 +10,14 @@ const taskInput = document.getElementById('task-input');
 const deadlineInput = document.getElementById('deadline-input'); // Added deadline input
 const taskList = document.getElementById('task-list');
 
+// Create and insert task count display element
+const taskCountDisplay = document.createElement('div');
+taskCountDisplay.id = 'task-count';
+taskCountDisplay.style.margin = '15px 0';
+taskCountDisplay.style.fontWeight = '600';
+taskCountDisplay.style.color = '#4caf50';
+taskList.parentNode.insertBefore(taskCountDisplay, taskList);
+
 // Pomodoro Timer variables
 const WORK_TIME = 25 * 60; // seconds
 const BREAK_TIME = 5 * 60; // seconds
@@ -30,7 +38,7 @@ function updateTimerDisplay() {
   timerLabel.textContent = isWorkTime ? 'Work Time' : 'Break Time';
 }
 
-// Thisis where Timer is started for work or break 
+// This is where Timer is started for work or break 
 function startTimer() {
   if (timerInterval) return; // already running
   timerInterval = setInterval(() => {
@@ -83,11 +91,39 @@ function saveTasks() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+// Update and display task counts
+function updateTaskCount() {
+  const completed = tasks.filter(t => t.done).length;
+  const total = tasks.length;
+  taskCountDisplay.textContent = `Tasks: ${total} | Completed: ${completed} | Incomplete: ${total - completed}`;
+}
+
 function renderTasks() {
   taskList.innerHTML = '';
   tasks.forEach((task, index) => {
     const li = document.createElement('li');
-    li.textContent = task.text;
+
+    // Create checkbox for complete/incomplete
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = task.done;
+    checkbox.style.marginRight = '10px';
+
+    checkbox.addEventListener('change', e => {
+      tasks[index].done = e.target.checked;
+      saveTasks();
+      renderTasks();
+    });
+
+    li.appendChild(checkbox);
+
+    const taskText = document.createElement('span');
+    taskText.textContent = task.text;
+    if (task.done) {
+      taskText.style.textDecoration = 'line-through';
+      taskText.style.color = '#777';
+    }
+    li.appendChild(taskText);
 
     // Show deadline if it exists
     if (task.deadline) {
@@ -99,16 +135,33 @@ function renderTasks() {
       li.appendChild(deadlineSpan);
     }
 
-    if (task.done) li.classList.add('done');
+    // Edit button
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.classList.add('edit-btn');
+    editBtn.style.marginLeft = '10px';
+    editBtn.addEventListener('click', e => {
+      e.stopPropagation();
 
-    li.addEventListener('click', () => {
-      tasks[index].done = !tasks[index].done;
+      const newText = prompt('Edit task:', task.text);
+      if (newText !== null && newText.trim() !== '') {
+        tasks[index].text = newText.trim();
+      }
+
+      const newDeadline = prompt('Edit deadline (YYYY-MM-DD):', task.deadline || '');
+      if (newDeadline !== null) {
+        tasks[index].deadline = newDeadline.trim();
+      }
+
       saveTasks();
       renderTasks();
     });
 
+    // Delete button
     const delBtn = document.createElement('button');
     delBtn.textContent = '✕';
+    delBtn.classList.add('delete-btn');
+    delBtn.style.marginLeft = '10px';
     delBtn.addEventListener('click', e => {
       e.stopPropagation();
       tasks.splice(index, 1);
@@ -116,11 +169,15 @@ function renderTasks() {
       renderTasks();
     });
 
+    li.appendChild(editBtn);
     li.appendChild(delBtn);
     taskList.appendChild(li);
   });
+
+  updateTaskCount();
 }
 
+// Task submit form handler
 taskForm.addEventListener('submit', e => {
   e.preventDefault();
   const text = taskInput.value.trim();
@@ -146,5 +203,6 @@ resetBtn.addEventListener('click', resetTimer);
 document.getElementById("dark-mode-toggle").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
+
 
 
