@@ -12,7 +12,7 @@
   <!-- This is where I linked the stylesheet -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- This is the Icons section (optional, for dark mode or timer icons) -->
+  <!-- This is where I put the Icons section (optional, for dark mode or timer icons) -->
   <link rel="icon" type="image/png" href="pwa version tracker/icons/icon-192.png" />
   <link rel="icon" type="image/png" href="pwa version tracker/icons/icon-512.png" />
 </head>
@@ -26,7 +26,7 @@
 
     <!-- The Pomodoro Timer Section -->
     <section class="timer-section">
-      <h2 id="timer-label">Work Time</h2>
+      <h2 id="timer-indicator">Work Time</h2>
       <div id="timer">25:00</div>
       <div class="timer-buttons">
         <button id="startBtn">Start</button>
@@ -40,7 +40,7 @@
       <h2>My Tasks</h2>
       <form id="task-form">
         <input type="text" id="task-input" placeholder="Enter a new task..." required />
-        <input type="date" id="deadline-input" /> <!-- Added deadline input -->
+        <input type="date" id="deadline-input" /> <!-- Where user adds deadline input -->
         <button type="submit">Add Task</button>
       </form>
 
@@ -49,7 +49,7 @@
 
   </main>
 
-  <!-- Install button (hidden by default) -->
+  <!-- Install and Dark mode button -->
   <button id="installBtn" style="display:none; margin: 1em; padding: 0.5em 1em; font-size: 1rem;">Install App</button>
   <button id="dark-mode-toggle" style="margin-bottom: 20px;">Toggle Dark Mode</button>
 
@@ -71,11 +71,11 @@
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault(); // Prevent automatic prompt
       deferredPrompt = e;  // Save the event
-      installBtn.style.display = 'inline-block'; // Show install button
+      installBtn.style.display = 'inline-block'; // Install button is displayed
     });
 
     installBtn.addEventListener('click', async () => {
-      installBtn.style.display = 'none'; // Hide button after click
+      installBtn.style.display = 'none'; // Install button gets hidden after click and prompt is shown
       if (!deferredPrompt) return;
       deferredPrompt.prompt(); // Show native prompt
       const { outcome } = await deferredPrompt.userChoice;
