@@ -4,7 +4,6 @@ class PomodoroApp {
     // DOM elements
     this.timerIndicator = document.getElementById('timer-indicator');
     this.timerDisplay = document.getElementById('timer');
-    this.timerLabel = document.getElementById('timer-label'); // Added timer label for work/break indication
     this.startBtn = document.getElementById('startBtn');
     this.pauseBtn = document.getElementById('pauseBtn');
     this.resetBtn = document.getElementById('resetBtn');
@@ -45,6 +44,8 @@ class PomodoroApp {
   // This is where update timer is displayed
   updateTimerDisplay() {
     this.timerDisplay.textContent = this.formatTime(this.timeLeft);
+    
+    
   }
 
   // This is where Timer is started for work or break 
